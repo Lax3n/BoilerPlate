@@ -82,7 +82,7 @@ async def main():
     )
 
     # Example request
-    response = await client.get("https://httpbin.org/get")
+    response = await client.get("https://probe.velys.software/")
     print(f"Status: {response.status}")
     print(await response.json())
 

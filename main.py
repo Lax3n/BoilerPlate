@@ -49,6 +49,8 @@ async def main():
     client = rnet.Client(
         # Browser emulation
         emulation=rnet.EmulationOption(rnet.Emulation.Chrome143, rnet.EmulationOS.Windows),
+        # Preserve original header order/casing
+        orig_header=True,
         # Cookies
         cookie_provider=jar,
         # Proxy

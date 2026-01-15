@@ -1,54 +1,51 @@
-Boilerplate RNET avec proxy rotating
-====================================
+# RNET Boilerplate with Rotating Proxy
 
-Ce dépôt fournit un exemple minimal d'appel HTTP avec [rnet](https://pypi.org/project/rnet/) en mode navigateur émulé, derrière un proxy authentifié choisi aléatoirement dans un fichier `proxies.txt`.
+Minimal HTTP request example using [rnet](https://github.com/0x676e67/rnet) (v3.0.0-rc17) with browser emulation and authenticated rotating proxies.
 
-Prérequis
----------
+## Requirements
+
 - Python >= 3.14
-- `uv` recommandé pour gérer l'environnement (ou `pip` classique)
-- Un fichier `proxies.txt` à la racine, contenant une liste de proxies (un par ligne), aux formats:
-	- `http://user:pwd@ip:port`
-	- `ip:port:user:pwd` (sera converti automatiquement)
+- `uv` recommended (or classic `pip`)
+- A `proxies.txt` file at root with one proxy per line:
+  - `http://user:pwd@ip:port`
+  - `ip:port:user:pwd` (auto-converted)
 
-Installation rapide
--------------------
-1. Crée un environnement isolé (exemple avec `uv`):
+## Installation
 
-	 ```bash
-	 uv venv
-	 uv pip install -r pyproject.toml
-	 ```
+With `uv` (recommended):
 
-	 Avec `pip` classique:
+```bash
+uv venv
+uv pip install -r pyproject.toml
+```
 
-	 ```bash
-	 python -m venv .venv
-	 .venv\\Scripts\\activate
-	 pip install -r pyproject.toml
-	 ```
+With `pip`:
 
-2. Ajoute tes proxies dans `proxies.txt`.
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r pyproject.toml
+```
 
-Exécution
----------
+## Usage
+
 ```bash
 uv run main.py
 ```
 
-Le script:
-- Charge un proxy aléatoire depuis `proxies.txt`.
-- Configure un client RNET avec émulation Chrome 142 sur Windows et redirections limitées.
-- Fait un GET vers https://probe.velys.software/ puis affiche le statut HTTP et la réponse JSON.
+The script:
+- Loads a random proxy from `proxies.txt`
+- Configures an rnet client with Chrome 142 emulation on Windows
+- Makes a GET request to https://probe.velys.software/ and displays the response
 
-Structure des fichiers
-----------------------
-- `main.py` : logique principale (lecture proxy, client RNET, appel de test)
-- `pyproject.toml` : métadonnées et dépendances (`aiofiles`, `rnet`)
-- `proxies.txt` : liste des proxies utilisés à l'exécution (à créer)
+## Project Structure
 
-Notes pratiques
----------------
-- Le fichier `proxies.txt` ne doit pas être versionné si tu y mets des identifiants sensibles.
-- En cas d'erreur d'authentification ou de connexion, vérifie le format des lignes du proxy et que le proxy accepte le protocole HTTP.
-- Pour changer le site de test, modifie simplement l'URL dans `main.py`.
+- `main.py` - Main logic (proxy loading, rnet client, test request)
+- `pyproject.toml` - Metadata and dependencies (`aiofiles`, `rnet`)
+- `proxies.txt` - Proxy list (create your own, not versioned)
+
+## Notes
+
+- Don't commit `proxies.txt` if it contains sensitive credentials
+- For connection errors, verify proxy format and HTTP protocol support
+- Change the test URL in `main.py` as needed

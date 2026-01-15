@@ -1,7 +1,7 @@
 [project]
 name = "boilerplate"
 version = "0.1.0"
-description = "Add your description here"
+description = "RNET boilerplate with browser emulation and rotating proxy support"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
